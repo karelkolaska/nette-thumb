@@ -1,0 +1,19 @@
+{
+  "name": "karelkolaska/nette-thumb",
+	"authors": [
+		{
+			"name": "Karel Koláska",
+			"email": "karel@kolaska.cz"
+		}
+	],
+	"require": {
+		"php": ">=5.3.1",
+		"nette/di": "^2.3.1",
+		"nette/utils": "^2.3.1"
+	},	
+	"autoload": {
+		"psr-4": {
+			"NetteThumb\\": "src/"
+		}
+	}	
+}
