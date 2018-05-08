@@ -1,6 +1,6 @@
 <?php
 
-namespace NetteThumb;
+namespace KarelKolaska\NetteThumb;
 
 use Nette\Utils\Image,
 	Nette\Utils\Strings;

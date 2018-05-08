@@ -1,6 +1,6 @@
 <?php
 
-namespace NetteThumb\DI;
+namespace KarelKolaska\NetteThumb\DI;
 
 use Nette\DI\CompilerExtension;
 

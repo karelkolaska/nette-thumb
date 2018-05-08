@@ -1,8 +1,8 @@
 <?php
 
-namespace NetteThumb\Latte;
+namespace KarelKolaska\NetteThumb\Latte;
 
-use NetteThumb\ThumbGenerator;
+use KarelKolaska\NetteThumb\ThumbGenerator;
 
 /**
  * Latte filter, that submites given properties to ThumbGenerator
