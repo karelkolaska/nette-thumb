@@ -32,9 +32,10 @@ class ThumbPropsFilter
 	 */
 	public function __invoke($origPath, $propsKey = NULL, $title = NULL)
 	{		
-		return $this->thumbGenerator->setOrigPath($origPath)
-					->setTitle($title)
+				
+		return $this->thumbGenerator->setOrigPath($origPath)					
 					->loadPropsFromDefault($propsKey)
+					->setTitle($title)
 					->getThumbPath();	
 	}
 }
