@@ -35,19 +35,19 @@ class ThumbGenerator
 	protected $height;
 	
 	/** @var int */
-	protected $flag = Image::FILL;
+	protected $flag;
 	
 	/** @var string */
 	protected $watermark;
 	
 	/** @var numeric */
-	protected $watermarkLeft = '50%';
+	protected $watermarkLeft;
 	
 	/** @var numeric */
-	protected $watermarkTop = '50%';
+	protected $watermarkTop;
 	
 	/** @var int */
-	protected $watermarkOpacity = 100;
+	protected $watermarkOpacity;
 	
 	/** @var string */
 	protected $notFoundImage;	
@@ -160,32 +160,63 @@ class ThumbGenerator
 	 */
 	public function setProperties($properties)
 	{
+		// Thumbnail width
 		if (isset($properties['width'])) {
 			$this->width = $properties['width'];
+		} else {
+			$this->width = NULL;
 		}
+		
+		// Thumbnail height
 		if (isset($properties['height'])) {
 			$this->height = $properties['height'];
+		} else {
+			$this->height = NULL;
 		}
+		
+		// Resize flag
 		if (isset($properties['flag'])) {
 			$this->flag = constant('Nette\Utils\Image::' . Strings::upper($properties['flag']));
+		} else {
+			$this->flag = Image::FIT;
 		}
+		
+		// Image SEO title
 		if (isset($properties['title'])) {
 			$this->title = $properties['title'];
-		}		
+		} else {
+			$this->title = NULL;
+		}
+		
+		// Watermark Image
 		if (isset($properties['watermark'])) {
 			if (!file_exists($properties['watermark'])) {
 				$properties['watermark'] = $this->wwwDir . $properties['watermark'];
 			}
 			$this->watermark = $properties['watermark'];			
+		} else {
+			$this->watermark = NULL;
 		}
+		
+		// Watermark Left Position
 		if (isset($properties['watermarkLeft'])) {
 			$this->watermarkLeft = $properties['watermarkLeft'];
+		} else {
+			$this->watermarkLeft = '50%';
 		}
+		
+		// Watermark Top Position
 		if (isset($properties['watermarkTop'])) {
 			$this->watermarkTop = $properties['watermarkTop'];
+		} else {
+			$this->watermarkTop = '50%';
 		}
+		
+		// Watermark Opacity
 		if (isset($properties['watermarkOpacity'])) {
 			$this->watermarkOpacity = $properties['watermarkOpacity'];
+		} else {
+			$this->watermarkOpacity = 100;
 		}
 
 		return $this;
