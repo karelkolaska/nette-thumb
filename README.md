@@ -25,6 +25,7 @@ Set extension configuration and default thumbnails properties:
 thumb:
 	debugMode: FALSE
 	thumbDir: %wwwDir%/images/thumbs
+	notFoundImage: %wwwDir%/images/not-found-image.jpg
 	defaultProps:
 		articleList:
 			width: 250
@@ -46,6 +47,10 @@ When se to TRUE, thumbnails are re-generated with every hit. Otherwise thumbnail
 ### thumbDir
 
 Directory path to store generated thumbnails.
+
+### notFoundImage
+
+Image that will be shown, when original image doesn't exists.
 
 ### defaultProps
 
