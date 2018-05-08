@@ -1,5 +1,7 @@
 {
-  "name": "karelkolaska/nette-thumb",
+	"name": "karelkolaska/nette-thumb",
+	"description": "Nette extension that generates locally stored thumbnails.",
+	"keywords": ["nette", "nette-extension", "thumbnail"],	
 	"authors": [
 		{
 			"name": "Karel Koláska",
