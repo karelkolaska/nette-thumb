@@ -183,10 +183,15 @@ class ThumbGenerator
 	
 	/**
 	 * 
-	 * 
+	 * @return string
+	 * @throws Exception
 	 */
 	public function getThumbPath()
 	{
+		if (!file_exists($this->thumbDir)) {
+			throw new Exception('Thumb directory "' . $this->thumbDir . '" doesn\'t exists.');
+		}
+		
 		$pathinfo = pathinfo($this->origPath);
 		$suffix = ($this->title ? Strings::webalize($this->title) . '-' : '') . ($this->width ? : '0') . 'x' . ($this->height ? : '0');
 		$thumbpath = $this->thumbDir . '/' . $pathinfo['filename'] . '-' . $suffix . '.' . $pathinfo['extension'];
