@@ -10,7 +10,7 @@ use NetteThumb\ThumbGenerator;
  * 
  * @author Karel Koláska <karel@kolaska.cz>
  */
-class ThumbOptionFilter
+class ThumbPropsFilter
 {
 	/** @var ThumbGenerator */
 	private $thumbGenerator;
@@ -30,11 +30,11 @@ class ThumbOptionFilter
 	 * @param string $option
 	 * @return string
 	 */
-	public function __invoke($origPath, $option = NULL, $title = NULL)
+	public function __invoke($origPath, $propsKey = NULL, $title = NULL)
 	{		
 		return $this->thumbGenerator->setOrigPath($origPath)
 					->setTitle($title)
-					->loadOption($option)
+					->loadPropsFromDefault($propsKey)
 					->getThumbPath();	
 	}
 }

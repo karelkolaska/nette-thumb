@@ -33,16 +33,16 @@ class ThumbExtension extends CompilerExtension
 			->addSetup('setWwwDir', [$config['wwwDir']])
 			->addSetup('setThumbDir', [$config['thumbDir']])
 			->addSetup('setDebugMode', [$config['debugMode']])
-			->addSetup('setOptions', [$config['options']]);
+			->addSetup('setDefaultProps', [$config['defaultProps']]);
 
 		// Latte filters
 		$builder->addDefinition($this->prefix('latte.thumbFilter'))
 			->setClass('NetteThumb\Latte\ThumbFilter');
-		$builder->addDefinition($this->prefix('latte.thumbOptionFilter'))
-			->setClass('NetteThumb\Latte\ThumbOptionFilter');		
+		$builder->addDefinition($this->prefix('latte.thumbPropsFilter'))
+			->setClass('NetteThumb\Latte\ThumbPropsFilter');		
 
 		$builder->getDefinition('nette.latteFactory')			
 			->addSetup('addFilter', ['thumb', '@' . $this->prefix('latte.thumbFilter')])
-			->addSetup('addFilter', ['thumbOption', '@' . $this->prefix('latte.thumbOptionFilter')]);
+			->addSetup('addFilter', ['thumbProps', '@' . $this->prefix('latte.thumbPropsFilter')]);
 	}
 }

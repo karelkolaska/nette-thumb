@@ -50,7 +50,7 @@ class ThumbGenerator
 	protected $watermarkOpacity = 100;
 	
 	/** @var array */
-	protected $options;	
+	protected $defaultProps;	
 	
 	/**
 	 * 
@@ -87,12 +87,12 @@ class ThumbGenerator
 	
 	/**
 	 * 
-	 * @param array $options
+	 * @param array $defaultProps
 	 * @return ThumbGenerator
 	 */
-	public function setOptions($options)
+	public function setDefaultProps($defaultProps)
 	{		
-		$this->options = $options;
+		$this->defaultProps = $defaultProps;
 		return $this;
 	}	
 	
@@ -129,17 +129,17 @@ class ThumbGenerator
 	
 	/**
 	 * 
-	 * @param string $optionKey
+	 * @param string $propsKey
 	 * @return ThumbGenerator
 	 * @throws Exception
 	 */
-	public function loadOption($optionKey)
+	public function loadPropsFromDefault($propsKey)
 	{
-		if (!array_key_exists($optionKey, $this->options)) {
-			throw new Exception('Option "' . $optionKey . '" is not defined.');
+		if (!array_key_exists($propsKey, $this->defaultProps)) {
+			throw new Exception('Default properties for key "' . $propsKey . '" are not defined.');
 		}
 				
-		$this->setProperties($this->options[$optionKey]);
+		$this->setProperties($this->defaultProps[$propsKey]);
 		return $this;
 	}	
 	
