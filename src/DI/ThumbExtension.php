@@ -29,7 +29,7 @@ class ThumbExtension extends CompilerExtension
 		
 		// ThumbGenerator
 		$builder->addDefinition($this->prefix('thumbGenerator'))
-			->setClass('NetteThumb\ThumbGenerator')
+			->setClass('KarelKolaska\NetteThumb\ThumbGenerator')
 			->addSetup('setWwwDir', [$config['wwwDir']])
 			->addSetup('setThumbDir', [$config['thumbDir']])
 			->addSetup('setDebugMode', [$config['debugMode']])
@@ -37,9 +37,9 @@ class ThumbExtension extends CompilerExtension
 
 		// Latte filters
 		$builder->addDefinition($this->prefix('latte.thumbFilter'))
-			->setClass('NetteThumb\Latte\ThumbFilter');
+			->setClass('KarelKolaska\NetteThumb\Latte\ThumbFilter');
 		$builder->addDefinition($this->prefix('latte.thumbPropsFilter'))
-			->setClass('NetteThumb\Latte\ThumbPropsFilter');		
+			->setClass('KarelKolaska\NetteThumb\Latte\ThumbPropsFilter');		
 
 		$builder->getDefinition('nette.latteFactory')			
 			->addSetup('addFilter', ['thumb', '@' . $this->prefix('latte.thumbFilter')])
