@@ -15,6 +15,7 @@ class ThumbExtension extends CompilerExtension
 	private static $configDefaults = [
 		'wwwDir' => '%wwwDir%',				
 		'thumbDir' => NULL,
+		'notFoundImage' => NULL,
 		'debugMode' => FALSE
 	];
 
@@ -33,6 +34,7 @@ class ThumbExtension extends CompilerExtension
 			->addSetup('setWwwDir', [$config['wwwDir']])
 			->addSetup('setThumbDir', [$config['thumbDir']])
 			->addSetup('setDebugMode', [$config['debugMode']])
+			->addSetup('setNotFoundImage', [$config['notFoundImage']])
 			->addSetup('setDefaultProps', [$config['defaultProps']]);
 
 		// Latte filters

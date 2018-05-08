@@ -49,6 +49,9 @@ class ThumbGenerator
 	/** @var int */
 	protected $watermarkOpacity = 100;
 	
+	/** @var string */
+	protected $notFoundImage;	
+	
 	/** @var array */
 	protected $defaultProps;	
 	
@@ -83,6 +86,17 @@ class ThumbGenerator
 	{		
 		$this->thumbDir = $thumbDir;
 		return $this;
+	}
+	
+	/**
+	 * 
+	 * @param string $notFoundImage
+	 * @return ThumbGenerator
+	 */
+	public function setNotFoundImage($notFoundImage)
+	{		
+		$this->notFoundImage = $notFoundImage;
+		return $this;
 	}	
 	
 	/**
@@ -104,12 +118,8 @@ class ThumbGenerator
 	 */
 	public function setOrigPath($origPath)
 	{		
-		if (!file_exists($origPath) && !Strings::startsWith($origPath, $this->wwwDir)) {
+		if (!file_exists($origPath) && file_exists($this->wwwDir . $origPath)) {
 			$origPath = $this->wwwDir . $origPath;
-		}
-		
-		if (!file_exists($origPath)) {
-			throw new Exception('File "' . $origPath . '" not found.');
 		}
 		
 		$this->origPath = $origPath;
@@ -196,7 +206,7 @@ class ThumbGenerator
 		$suffix = ($this->title ? Strings::webalize($this->title) . '-' : '') . ($this->width ? : '0') . 'x' . ($this->height ? : '0');
 		$thumbpath = $this->thumbDir . '/' . $pathinfo['filename'] . '-' . $suffix . '.' . $pathinfo['extension'];
 				
-		if ($this->debugMode || !file_exists($thumbpath) || filemtime($this->origPath) > filemtime($thumbpath)) {
+		if ($this->debugMode || !file_exists($thumbpath) || (file_exists($this->origPath) && filemtime($this->origPath) > filemtime($thumbpath))) {
 			$this->generateThumb($thumbpath);
 		}
 		
@@ -209,7 +219,14 @@ class ThumbGenerator
 	 */
 	protected function generateThumb($thumbpath)
 	{
-		$image = Image::fromFile($this->origPath);
+		if (file_exists($this->origPath)) {
+			$image = Image::fromFile($this->origPath);
+		} else if (!file_exists($this->origPath) && file_exists($this->notFoundImage)) {
+			$image = Image::fromFile($this->notFoundImage);
+		} else {
+			$image = Image::fromBlank(300, 300, Image::rgb(230, 230, 230));
+		}
+		
 		$image->resize($this->width, $this->height, $this->flag);
 		
 		if ($this->watermark) {
