@@ -1,13 +1,13 @@
-# KarelKolaska\NetteThumb
+# KarelKolaska\NetteThumbnails
 
 Nette extension for generating locally stored thumbnails.
 
 ## Installation
 
-Install KarelKolaska\NetteThumb using [Composer](https://getcomposer.org/):
+Install KarelKolaska\NetteThumbnails using [Composer](https://getcomposer.org/):
 
 ```
-$ composer require karelkolaska/nette-thumb
+$ composer require karelkolaska/nette-thumbnails
 ```
 
 ## Configuration
